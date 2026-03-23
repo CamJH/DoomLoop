@@ -1,0 +1,434 @@
+[gd_scene format=3 uid="uid://c1timer0bar00"]
+
+[ext_resource type="Script" path="res://timer_bar.gd" id="1_script"]
+
+; ---- Progress bar fills ----
+[sub_resource type="StyleBoxFlat" id="blue_fill"]
+bg_color = Color(0.25, 0.45, 0.85, 1.0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="red_fill"]
+bg_color = Color(0.8, 0.2, 0.2, 1.0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+; ---- Main timer bar fill (warm amber) ----
+[sub_resource type="StyleBoxFlat" id="timer_fill"]
+bg_color = Color(0.85, 0.65, 0.15, 1.0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+; ---- Main timer bar background ----
+[sub_resource type="StyleBoxFlat" id="timer_bg"]
+bg_color = Color(0.08, 0.08, 0.12, 1.0)
+border_color = Color(0.35, 0.4, 0.55, 0.5)
+border_width_top = 1
+border_width_bottom = 1
+border_width_left = 1
+border_width_right = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+; ---- Generic progress bar background (combat bars, action bars) ----
+[sub_resource type="StyleBoxFlat" id="bar_bg"]
+bg_color = Color(0.1, 0.1, 0.15, 1.0)
+border_color = Color(0.3, 0.35, 0.5, 0.4)
+border_width_top = 1
+border_width_bottom = 1
+border_width_left = 1
+border_width_right = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+; ---- Left panel background ----
+[sub_resource type="StyleBoxFlat" id="left_panel_bg"]
+bg_color = Color(0.1, 0.1, 0.16, 0.9)
+border_color = Color(0.35, 0.4, 0.55, 0.5)
+border_width_top = 1
+border_width_bottom = 1
+border_width_left = 1
+border_width_right = 1
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 14
+content_margin_right = 14
+content_margin_top = 12
+content_margin_bottom = 12
+
+; ---- Main column panel background ----
+[sub_resource type="StyleBoxFlat" id="main_panel_bg"]
+bg_color = Color(0.09, 0.09, 0.14, 0.85)
+border_color = Color(0.3, 0.35, 0.5, 0.4)
+border_width_top = 1
+border_width_bottom = 1
+border_width_left = 1
+border_width_right = 1
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 20
+content_margin_right = 20
+content_margin_top = 16
+content_margin_bottom = 16
+
+; ---- Combat section panel ----
+[sub_resource type="StyleBoxFlat" id="combat_panel_bg"]
+bg_color = Color(0.12, 0.08, 0.08, 0.9)
+border_color = Color(0.6, 0.25, 0.25, 0.6)
+border_width_top = 1
+border_width_bottom = 1
+border_width_left = 1
+border_width_right = 1
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 16
+content_margin_right = 16
+content_margin_top = 12
+content_margin_bottom = 12
+
+; ---- Button styles ----
+[sub_resource type="StyleBoxFlat" id="btn_normal"]
+bg_color = Color(0.15, 0.16, 0.22, 1.0)
+border_color = Color(0.4, 0.45, 0.6, 0.6)
+border_width_top = 1
+border_width_bottom = 1
+border_width_left = 1
+border_width_right = 1
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 12
+content_margin_right = 12
+content_margin_top = 6
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="btn_hover"]
+bg_color = Color(0.2, 0.22, 0.32, 1.0)
+border_color = Color(0.5, 0.55, 0.75, 0.8)
+border_width_top = 1
+border_width_bottom = 1
+border_width_left = 1
+border_width_right = 1
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 12
+content_margin_right = 12
+content_margin_top = 6
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="btn_pressed"]
+bg_color = Color(0.25, 0.3, 0.45, 1.0)
+border_color = Color(0.55, 0.6, 0.8, 0.9)
+border_width_top = 1
+border_width_bottom = 1
+border_width_left = 1
+border_width_right = 1
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 12
+content_margin_right = 12
+content_margin_top = 6
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="btn_disabled"]
+bg_color = Color(0.1, 0.1, 0.14, 0.7)
+border_color = Color(0.25, 0.28, 0.35, 0.4)
+border_width_top = 1
+border_width_bottom = 1
+border_width_left = 1
+border_width_right = 1
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 12
+content_margin_right = 12
+content_margin_top = 6
+content_margin_bottom = 6
+
+; ---- Separator style ----
+[sub_resource type="StyleBoxFlat" id="hsep_style"]
+bg_color = Color(0.35, 0.4, 0.55, 0.4)
+content_margin_top = 1
+content_margin_bottom = 1
+
+; ---- Theme ----
+[sub_resource type="Theme" id="game_theme"]
+Button/colors/font_color = Color(0.8, 0.82, 0.9, 1.0)
+Button/colors/font_hover_color = Color(0.9, 0.92, 1.0, 1.0)
+Button/colors/font_pressed_color = Color(1.0, 1.0, 1.0, 1.0)
+Button/colors/font_disabled_color = Color(0.4, 0.42, 0.5, 0.7)
+Button/styles/normal = SubResource("btn_normal")
+Button/styles/hover = SubResource("btn_hover")
+Button/styles/pressed = SubResource("btn_pressed")
+Button/styles/disabled = SubResource("btn_disabled")
+Label/colors/font_color = Color(0.78, 0.8, 0.88, 1.0)
+HSeparator/styles/separator = SubResource("hsep_style")
+
+; ==== Scene tree ====
+
+[node name="GameRoot" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource("game_theme")
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_script")
+
+[node name="TopLevel" type="VBoxContainer" parent="."]
+theme_override_constants/separation = 16
+
+[node name="TimerSection" type="VBoxContainer" parent="TopLevel"]
+theme_override_constants/separation = 6
+
+[node name="TimerLabel" type="Label" parent="TopLevel/TimerSection"]
+unique_name_in_owner = true
+text = "Time Remaining: 10:00"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.85, 0.65, 0.15, 1.0)
+theme_override_font_sizes/font_size = 18
+
+[node name="MainTimerBar" type="ProgressBar" parent="TopLevel/TimerSection"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+min_value = 0.0
+max_value = 600.0
+value = 600.0
+show_percentage = false
+theme_override_styles/fill = SubResource("timer_fill")
+theme_override_styles/background = SubResource("timer_bg")
+
+[node name="Spacer1" type="Control" parent="TopLevel"]
+custom_minimum_size = Vector2(0, 4)
+
+[node name="ContentColumns" type="HBoxContainer" parent="TopLevel"]
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="LeftPanel" type="PanelContainer" parent="TopLevel/ContentColumns"]
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.0
+theme_override_styles/panel = SubResource("left_panel_bg")
+
+[node name="LeftVBox" type="VBoxContainer" parent="TopLevel/ContentColumns/LeftPanel"]
+theme_override_constants/separation = 8
+
+[node name="StatsTitle" type="Label" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+text = "Player"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.55, 0.75, 1.0, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="StatsSep" type="HSeparator" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+
+[node name="HPLabel" type="Label" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+unique_name_in_owner = true
+text = "HP: 10 / 10"
+
+[node name="XPLabel" type="Label" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+unique_name_in_owner = true
+text = "XP: 0"
+
+[node name="GoldLabel" type="Label" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+unique_name_in_owner = true
+text = "Gold: 0"
+theme_override_colors/font_color = Color(1.0, 0.85, 0.3, 1.0)
+
+[node name="InventorySpacer" type="Control" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+custom_minimum_size = Vector2(0, 6)
+
+[node name="InventoryTitle" type="Label" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+text = "Inventory"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.55, 0.75, 1.0, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="InventorySep" type="HSeparator" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+
+[node name="InventoryList" type="VBoxContainer" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+unique_name_in_owner = true
+theme_override_constants/separation = 4
+
+[node name="InventoryEmpty" type="Label" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox/InventoryList"]
+text = "(empty)"
+horizontal_alignment = 1
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="SettingsSpacer" type="Control" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+custom_minimum_size = Vector2(0, 6)
+
+[node name="SettingsTitle" type="Label" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+text = "Settings"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.55, 0.75, 1.0, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="SettingsSep" type="HSeparator" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+
+[node name="AutoFleeRow" type="HBoxContainer" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+theme_override_constants/separation = 6
+
+[node name="AutoFleeLabel" type="Label" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox/AutoFleeRow"]
+text = "Auto-flee HP%:"
+size_flags_horizontal = 3
+
+[node name="AutoFleeSpinBox" type="SpinBox" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox/AutoFleeRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+min_value = 0.0
+max_value = 100.0
+step = 5.0
+value = 20.0
+suffix = "%"
+
+[node name="LeftPanelFill" type="Control" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
+size_flags_vertical = 3
+
+[node name="RightPanel" type="PanelContainer" parent="TopLevel/ContentColumns"]
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+theme_override_styles/panel = SubResource("main_panel_bg")
+
+[node name="MainColumn" type="VBoxContainer" parent="TopLevel/ContentColumns/RightPanel"]
+theme_override_constants/separation = 15
+
+[node name="LocationLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
+unique_name_in_owner = true
+text = "Town"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.85, 0.65, 0.15, 1.0)
+theme_override_font_sizes/font_size = 20
+
+[node name="ActionSection" type="VBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
+theme_override_constants/separation = 12
+
+[node name="ActionsLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/ActionSection"]
+unique_name_in_owner = true
+text = "What do you do?"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.6, 0.65, 0.75, 1.0)
+
+[node name="ButtonRow" type="VBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/ActionSection"]
+unique_name_in_owner = true
+theme_override_constants/separation = 10
+
+[node name="CombatSection" type="PanelContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
+unique_name_in_owner = true
+visible = false
+theme_override_styles/panel = SubResource("combat_panel_bg")
+
+[node name="CombatVBox" type="VBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/CombatSection"]
+theme_override_constants/separation = 10
+
+[node name="EnemyHPLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/CombatSection/CombatVBox"]
+unique_name_in_owner = true
+text = "Slime  HP: 3 / 3"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(1.0, 0.5, 0.5, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="PlayerAttackLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/CombatSection/CombatVBox"]
+unique_name_in_owner = true
+text = "Your Attack"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.55, 0.75, 1.0, 0.9)
+
+[node name="PlayerAttackBar" type="ProgressBar" parent="TopLevel/ContentColumns/RightPanel/MainColumn/CombatSection/CombatVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+min_value = 0.0
+max_value = 100.0
+value = 0.0
+show_percentage = false
+theme_override_styles/fill = SubResource("blue_fill")
+theme_override_styles/background = SubResource("bar_bg")
+
+[node name="EnemyAttackLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/CombatSection/CombatVBox"]
+text = "Enemy Attack"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(1.0, 0.5, 0.5, 0.9)
+
+[node name="EnemyAttackBar" type="ProgressBar" parent="TopLevel/ContentColumns/RightPanel/MainColumn/CombatSection/CombatVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+min_value = 0.0
+max_value = 100.0
+value = 0.0
+show_percentage = false
+theme_override_styles/fill = SubResource("red_fill")
+theme_override_styles/background = SubResource("bar_bg")
+
+[node name="FleeButton" type="Button" parent="TopLevel/ContentColumns/RightPanel/MainColumn/CombatSection/CombatVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 36)
+size_flags_horizontal = 4
+text = "Flee (1s)"
+
+[node name="CombatLogLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/CombatSection/CombatVBox"]
+unique_name_in_owner = true
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.62, 0.7, 0.85)
+theme_override_font_sizes/font_size = 13
+
+[node name="Spacer3" type="Control" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
+size_flags_vertical = 3
+
+[node name="StatusLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
+unique_name_in_owner = true
+text = ""
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.7, 0.85, 0.7, 1.0)
+
+[node name="InfoPanel" type="PanelContainer" parent="TopLevel/ContentColumns"]
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.0
+theme_override_styles/panel = SubResource("left_panel_bg")
+
+[node name="InfoVBox" type="VBoxContainer" parent="TopLevel/ContentColumns/InfoPanel"]
+unique_name_in_owner = true
+theme_override_constants/separation = 8
+
+[node name="InfoTitle" type="Label" parent="TopLevel/ContentColumns/InfoPanel/InfoVBox"]
+text = "Info"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.55, 0.75, 1.0, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="InfoSep" type="HSeparator" parent="TopLevel/ContentColumns/InfoPanel/InfoVBox"]
+
+[node name="InfoContent" type="VBoxContainer" parent="TopLevel/ContentColumns/InfoPanel/InfoVBox"]
+unique_name_in_owner = true
+theme_override_constants/separation = 4
+
+[node name="InfoEmpty" type="Label" parent="TopLevel/ContentColumns/InfoPanel/InfoVBox/InfoContent"]
+text = "Select [?] on an item to see details."
+horizontal_alignment = 1
+autowrap_mode = 2
+modulate = Color(1, 1, 1, 0.4)
+theme_override_font_sizes/font_size = 13
