@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1timer0bar00"]
 
-[ext_resource type="Script" path="res://timer_bar.gd" id="1_script"]
+[ext_resource type="Script" path="res://game.gd" id="1_script"]
 
 ; ---- Progress bar fills ----
 [sub_resource type="StyleBoxFlat" id="blue_fill"]
@@ -203,6 +203,7 @@ script = ExtResource("1_script")
 theme_override_constants/separation = 16
 
 [node name="TimerSection" type="VBoxContainer" parent="TopLevel"]
+unique_name_in_owner = true
 theme_override_constants/separation = 6
 
 [node name="TimerLabel" type="Label" parent="TopLevel/TimerSection"]
@@ -212,15 +213,24 @@ horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.85, 0.65, 0.15, 1.0)
 theme_override_font_sizes/font_size = 18
 
-[node name="MainTimerBar" type="ProgressBar" parent="TopLevel/TimerSection"]
+[node name="TimerRow" type="HBoxContainer" parent="TopLevel/TimerSection"]
+theme_override_constants/separation = 12
+
+[node name="MainTimerBar" type="ProgressBar" parent="TopLevel/TimerSection/TimerRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 28)
+size_flags_horizontal = 3
 min_value = 0.0
 max_value = 600.0
 value = 600.0
 show_percentage = false
 theme_override_styles/fill = SubResource("timer_fill")
 theme_override_styles/background = SubResource("timer_bg")
+
+[node name="PlanRouteButton" type="Button" parent="TopLevel/TimerSection/TimerRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 28)
+text = "Plan Route"
 
 [node name="Spacer1" type="Control" parent="TopLevel"]
 custom_minimum_size = Vector2(0, 4)
@@ -230,6 +240,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 16
 
 [node name="LeftPanel" type="PanelContainer" parent="TopLevel/ContentColumns"]
+unique_name_in_owner = true
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.0
 theme_override_styles/panel = SubResource("left_panel_bg")
@@ -336,6 +347,114 @@ theme_override_colors/font_color = Color(0.6, 0.65, 0.75, 1.0)
 unique_name_in_owner = true
 theme_override_constants/separation = 10
 
+[node name="PlannerOverlay" type="HBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
+unique_name_in_owner = true
+visible = false
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+; ---- Planner Left Column: actions ----
+[node name="PlannerLeft" type="PanelContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay"]
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.0
+theme_override_styles/panel = SubResource("left_panel_bg")
+
+[node name="PlannerLeftVBox" type="VBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft"]
+theme_override_constants/separation = 10
+
+[node name="PlannerTitle" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox"]
+text = "Route Planner"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.85, 0.65, 0.15, 1.0)
+theme_override_font_sizes/font_size = 20
+
+[node name="PlanNameRow" type="HBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox"]
+theme_override_constants/separation = 8
+size_flags_horizontal = 4
+
+[node name="PlanNameEdit" type="LineEdit" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox/PlanNameRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 0)
+text = "Untitled Route"
+placeholder_text = "Route name..."
+alignment = 1
+
+[node name="SaveButton" type="Button" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox/PlanNameRow"]
+unique_name_in_owner = true
+text = "Save"
+custom_minimum_size = Vector2(60, 0)
+
+[node name="LoadButton" type="Button" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox/PlanNameRow"]
+unique_name_in_owner = true
+text = "Load"
+custom_minimum_size = Vector2(60, 0)
+
+[node name="PlannerSep1" type="HSeparator" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox"]
+
+[node name="AvailableLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox"]
+text = "Available Actions"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.55, 0.75, 1.0, 1.0)
+theme_override_font_sizes/font_size = 14
+
+[node name="AvailableActions" type="VBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox"]
+unique_name_in_owner = true
+theme_override_constants/separation = 6
+
+[node name="PlannerLeftFill" type="Control" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox"]
+size_flags_vertical = 3
+
+[node name="PlannerFooter" type="HBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox"]
+theme_override_constants/separation = 10
+size_flags_horizontal = 4
+
+[node name="StartRunButton" type="Button" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox/PlannerFooter"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 40)
+text = "Start Run"
+
+[node name="ClearPlanButton" type="Button" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerLeft/PlannerLeftVBox/PlannerFooter"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 40)
+text = "Clear"
+
+; ---- Planner Right Column: planned steps ----
+[node name="PlannerRight" type="PanelContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay"]
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+theme_override_styles/panel = SubResource("main_panel_bg")
+
+[node name="PlannerRightVBox" type="VBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerRight"]
+theme_override_constants/separation = 10
+
+[node name="StepsHeaderRow" type="HBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerRight/PlannerRightVBox"]
+theme_override_constants/separation = 8
+
+[node name="StepsLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerRight/PlannerRightVBox/StepsHeaderRow"]
+text = "Planned Steps"
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.55, 0.75, 1.0, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="EstimatedTimeLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerRight/PlannerRightVBox/StepsHeaderRow"]
+unique_name_in_owner = true
+text = "~0s / 600s"
+horizontal_alignment = 2
+theme_override_colors/font_color = Color(0.85, 0.65, 0.15, 0.8)
+theme_override_font_sizes/font_size = 14
+
+[node name="StepsSep" type="HSeparator" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerRight/PlannerRightVBox"]
+
+[node name="PlannedStepsScroll" type="ScrollContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerRight/PlannerRightVBox"]
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="PlannedStepsList" type="VBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn/PlannerOverlay/PlannerRight/PlannerRightVBox/PlannedStepsScroll"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
 [node name="CombatSection" type="PanelContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
 unique_name_in_owner = true
 visible = false
@@ -388,15 +507,8 @@ custom_minimum_size = Vector2(200, 36)
 size_flags_horizontal = 4
 text = "Flee (1s)"
 
-[node name="CombatLogLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn/CombatSection/CombatVBox"]
-unique_name_in_owner = true
-text = ""
-horizontal_alignment = 1
-autowrap_mode = 2
-theme_override_colors/font_color = Color(0.6, 0.62, 0.7, 0.85)
-theme_override_font_sizes/font_size = 13
-
 [node name="Spacer3" type="Control" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
+unique_name_in_owner = true
 size_flags_vertical = 3
 
 [node name="StatusLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
@@ -405,30 +517,71 @@ text = ""
 horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.7, 0.85, 0.7, 1.0)
 
-[node name="InfoPanel" type="PanelContainer" parent="TopLevel/ContentColumns"]
+[node name="RightColumn" type="VBoxContainer" parent="TopLevel/ContentColumns"]
+unique_name_in_owner = true
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.0
+theme_override_constants/separation = 10
+
+[node name="InfoPanel" type="PanelContainer" parent="TopLevel/ContentColumns/RightColumn"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("left_panel_bg")
 
-[node name="InfoVBox" type="VBoxContainer" parent="TopLevel/ContentColumns/InfoPanel"]
+[node name="InfoVBox" type="VBoxContainer" parent="TopLevel/ContentColumns/RightColumn/InfoPanel"]
 unique_name_in_owner = true
 theme_override_constants/separation = 8
 
-[node name="InfoTitle" type="Label" parent="TopLevel/ContentColumns/InfoPanel/InfoVBox"]
+[node name="InfoTitle" type="Label" parent="TopLevel/ContentColumns/RightColumn/InfoPanel/InfoVBox"]
+unique_name_in_owner = true
 text = "Info"
 horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.55, 0.75, 1.0, 1.0)
 theme_override_font_sizes/font_size = 16
 
-[node name="InfoSep" type="HSeparator" parent="TopLevel/ContentColumns/InfoPanel/InfoVBox"]
+[node name="InfoSep" type="HSeparator" parent="TopLevel/ContentColumns/RightColumn/InfoPanel/InfoVBox"]
+unique_name_in_owner = true
 
-[node name="InfoContent" type="VBoxContainer" parent="TopLevel/ContentColumns/InfoPanel/InfoVBox"]
+[node name="InfoContent" type="VBoxContainer" parent="TopLevel/ContentColumns/RightColumn/InfoPanel/InfoVBox"]
 unique_name_in_owner = true
 theme_override_constants/separation = 4
 
-[node name="InfoEmpty" type="Label" parent="TopLevel/ContentColumns/InfoPanel/InfoVBox/InfoContent"]
-text = "Select [?] on an item to see details."
+[node name="InfoEmpty" type="Label" parent="TopLevel/ContentColumns/RightColumn/InfoPanel/InfoVBox/InfoContent"]
+text = "Click an inventory item or [?] to see details."
 horizontal_alignment = 1
 autowrap_mode = 2
 modulate = Color(1, 1, 1, 0.4)
+theme_override_font_sizes/font_size = 13
+
+[node name="CombatLogPanel" type="PanelContainer" parent="TopLevel/ContentColumns/RightColumn"]
+unique_name_in_owner = true
+visible = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.2
+theme_override_styles/panel = SubResource("combat_panel_bg")
+
+[node name="CombatLogVBox" type="VBoxContainer" parent="TopLevel/ContentColumns/RightColumn/CombatLogPanel"]
+theme_override_constants/separation = 6
+
+[node name="CombatLogTitle" type="Label" parent="TopLevel/ContentColumns/RightColumn/CombatLogPanel/CombatLogVBox"]
+text = "Combat Log"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(1.0, 0.5, 0.5, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="CombatLogSep" type="HSeparator" parent="TopLevel/ContentColumns/RightColumn/CombatLogPanel/CombatLogVBox"]
+
+[node name="CombatLogScroll" type="ScrollContainer" parent="TopLevel/ContentColumns/RightColumn/CombatLogPanel/CombatLogVBox"]
+unique_name_in_owner = true
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="CombatLogLabel" type="Label" parent="TopLevel/ContentColumns/RightColumn/CombatLogPanel/CombatLogVBox/CombatLogScroll"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+text = ""
+autowrap_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.62, 0.7, 0.85)
 theme_override_font_sizes/font_size = 13
