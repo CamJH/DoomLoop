@@ -289,17 +289,6 @@ text = "(empty)"
 horizontal_alignment = 1
 modulate = Color(1, 1, 1, 0.4)
 
-[node name="SettingsSpacer" type="Control" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
-custom_minimum_size = Vector2(0, 6)
-
-[node name="SettingsTitle" type="Label" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
-text = "Settings"
-horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.55, 0.75, 1.0, 1.0)
-theme_override_font_sizes/font_size = 16
-
-[node name="SettingsSep" type="HSeparator" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
-
 [node name="AutoFleeRow" type="HBoxContainer" parent="TopLevel/ContentColumns/LeftPanel/LeftVBox"]
 theme_override_constants/separation = 6
 
@@ -333,6 +322,13 @@ text = "Town"
 horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.85, 0.65, 0.15, 1.0)
 theme_override_font_sizes/font_size = 20
+
+[node name="StatusLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
+unique_name_in_owner = true
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.85, 0.7, 1.0)
 
 [node name="ActionSection" type="VBoxContainer" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
 theme_override_constants/separation = 12
@@ -510,12 +506,6 @@ text = "Flee (1s)"
 [node name="Spacer3" type="Control" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
 unique_name_in_owner = true
 size_flags_vertical = 3
-
-[node name="StatusLabel" type="Label" parent="TopLevel/ContentColumns/RightPanel/MainColumn"]
-unique_name_in_owner = true
-text = ""
-horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.7, 0.85, 0.7, 1.0)
 
 [node name="RightColumn" type="VBoxContainer" parent="TopLevel/ContentColumns"]
 unique_name_in_owner = true
