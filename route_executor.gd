@@ -118,7 +118,7 @@ func _check_step_condition(step: Dictionary) -> bool:
 		"gold_lt":
 			return game.player_gold < condition.get("value", 0)
 		"hp_below_pct":
-			var hp_pct := (float(game.player_hp) / float(game.player_max_hp)) * 100.0
+			var hp_pct: float = (float(game.player_hp) / float(game.player_max_hp)) * 100.0
 			return hp_pct < condition.get("value", 100)
 		"has_item":
 			var item_id: String = condition.get("item_id", "")
